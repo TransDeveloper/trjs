@@ -16,12 +16,13 @@ async function getParcel(trackingNumber) {
 
 		const trackingInfo = [];
 
+		let removeRegex = /\/ -|-\//g;
 		$('table tbody tr').each((index, element) => {
-			const date = $(element).find('td').eq(0).text().trim();
-			const status = $(element).find('td').eq(1).text().trim();
-			const branch = $(element).find('td').eq(2).text().trim();
-			const location = $(element).find('td').eq(3).text().trim();
-			const description = $(element).find('td').eq(4).text().trim();
+			let date = $(element).find('td').eq(0).text().replace(removeRegex,"").trim();
+			let status = $(element).find('td').eq(1).text().replace(removeRegex,"").trim();
+			let branch = $(element).find('td').eq(2).text().replace(removeRegex,"").trim();
+			let location = $(element).find('td').eq(3).text().replace(removeRegex,"").trim();
+			let description = $(element).find('td').eq(4).text().replace(removeRegex,"").trim();
 
 			if (status.includes(":")) {
 				return;
